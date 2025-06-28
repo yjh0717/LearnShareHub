@@ -216,7 +216,7 @@ const Register = () => {
           </form>
           
           <div className="mt-6 text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-gray-600">
               已有账户？{' '}
               <Link
                 to="/login"

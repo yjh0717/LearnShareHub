@@ -127,7 +127,7 @@ const Login = () => {
           </form>
           
           <div className="mt-6 text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-gray-600">
               还没有账户？{' '}
               <Link
                 to="/register"
