@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Academic theme colors
+				academic: {
+					'blue-50': '#f0f9ff',
+					'blue-100': '#e0f2fe',
+					'blue-500': '#0ea5e9',
+					'blue-600': '#0284c7',
+					'green-50': '#f0fdf4',
+					'green-100': '#dcfce7',
+					'green-500': '#22c55e',
+					'green-600': '#16a34a',
+					'purple-50': '#faf5ff',
+					'purple-100': '#f3e8ff',
+					'purple-500': '#a855f7',
+					'purple-600': '#9333ea',
 				}
 			},
 			borderRadius: {
@@ -84,11 +100,33 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'scale-in': {
+					'0%': {
+						transform: 'scale(0.95)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'scale(1)',
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'scale-in': 'scale-in 0.2s ease-out'
 			}
 		}
 	},
