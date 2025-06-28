@@ -4,9 +4,10 @@
 > 校园学习交流平台 - 让知识分享更简单
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)](https://nodejs.org/)
 [![React Version](https://img.shields.io/badge/react-18.x-blue)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/typescript-5.x-blue)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/vite-5.x-646CFF)](https://vitejs.dev/)
+[![Supabase](https://img.shields.io/badge/supabase-3ECF8E)](https://supabase.com/)
 
 ## 📖 项目简介
 
@@ -25,29 +26,27 @@ LearnShareHub 是一个专为校园设计的学习交流平台，类似于百度
 
 ### 前端
 - **框架**: React 18 + TypeScript
-- **构建工具**: Vite
-- **UI 组件库**: Ant Design 5.x
-- **状态管理**: Redux Toolkit + RTK Query
+- **构建工具**: Vite 5.x
+- **UI 组件库**: shadcn/ui + Radix UI
+- **样式**: Tailwind CSS
+- **状态管理**: TanStack Query (React Query)
 - **路由**: React Router v6
-- **样式**: CSS Modules + Less
-- **富文本编辑**: React Quill
+- **表单处理**: React Hook Form + Zod
 - **图表**: Recharts
+- **图标**: Lucide React
 
-### 后端
-- **运行时**: Node.js 18+
-- **框架**: Express.js + TypeScript
-- **数据库**: PostgreSQL
-- **ORM**: Sequelize
-- **缓存**: Redis
-- **认证**: JWT
-- **文件存储**: 本地存储 / 云存储
-- **API文档**: Swagger
+### 后端服务
+- **BaaS**: Supabase
+- **数据库**: PostgreSQL (Supabase)
+- **认证**: Supabase Auth
+- **实时功能**: Supabase Realtime
+- **文件存储**: Supabase Storage
 
 ### 开发工具
-- **代码规范**: ESLint + Prettier
-- **提交规范**: Conventional Commits
-- **容器化**: Docker + Docker Compose
-- **CI/CD**: GitHub Actions
+- **代码规范**: ESLint + TypeScript ESLint
+- **样式工具**: Tailwind CSS + PostCSS
+- **包管理**: npm
+- **开发平台**: Lovable (可视化开发)
 
 ## 🚀 快速开始
 
@@ -55,119 +54,119 @@ LearnShareHub 是一个专为校园设计的学习交流平台，类似于百度
 
 - Node.js >= 16.0.0
 - npm >= 8.0.0
-- PostgreSQL >= 13
-- Redis >= 6.0
 
-### 安装依赖
+### 本地开发
 
 ```bash
 # 克隆项目
 git clone https://github.com/your-username/LearnShareHub.git
 cd LearnShareHub
 
-# 安装所有依赖
-npm run install:all
-```
+# 安装依赖
+npm install
 
-### 环境配置
-
-1. 复制环境变量文件：
-```bash
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
-```
-
-2. 配置数据库连接（编辑 `backend/.env`）：
-```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=learnsharehub
-DB_USER=your_username
-DB_PASSWORD=your_password
-
-REDIS_HOST=localhost
-REDIS_PORT=6379
-
-JWT_SECRET=your_jwt_secret
-```
-
-### 启动开发服务器
-
-```bash
-# 启动前后端开发服务器
+# 启动开发服务器
 npm run dev
-
-# 或者分别启动
-npm run dev:frontend  # 前端: http://localhost:5173
-npm run dev:backend   # 后端: http://localhost:3000
 ```
 
-### 数据库初始化
+开发服务器将在 `http://localhost:5173` 启动。
 
-```bash
-# 进入后端目录
-cd backend
+### Supabase 配置
 
-# 运行数据库迁移
-npm run db:migrate
+1. 在 [Supabase](https://supabase.com) 创建新项目
+2. 获取项目的 URL 和 anon key
+3. 在项目根目录创建 `.env.local` 文件：
 
-# 填充示例数据（可选）
-npm run db:seed
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
+
+### 使用 Lovable 开发
+
+本项目支持在 [Lovable](https://lovable.dev) 平台进行可视化开发：
+
+1. 访问 [Lovable 项目页面](https://lovable.dev/projects/056e8b2f-1bd3-4079-a5f0-12029e593a33)
+2. 直接在浏览器中编辑和预览
+3. 更改会自动同步到 GitHub 仓库
 
 ## 📁 项目结构
 
 ```
 LearnShareHub/
-├── frontend/                 # React 前端应用
-│   ├── src/
-│   │   ├── components/       # 可复用组件
-│   │   ├── pages/           # 页面组件
-│   │   ├── store/           # Redux 状态管理
-│   │   ├── services/        # API 服务
-│   │   ├── hooks/           # 自定义 Hooks
-│   │   ├── utils/           # 工具函数
-│   │   └── types/           # TypeScript 类型定义
-│   ├── public/              # 静态资源
-│   ├── package.json
-│   └── vite.config.ts
-├── backend/                  # Node.js 后端服务
-│   ├── src/
-│   │   ├── controllers/     # 控制器
-│   │   ├── models/          # 数据模型
-│   │   ├── routes/          # 路由定义
-│   │   ├── middleware/      # 中间件
-│   │   ├── services/        # 业务逻辑
-│   │   ├── utils/           # 工具函数
-│   │   └── types/           # TypeScript 类型定义
-│   ├── migrations/          # 数据库迁移文件
-│   ├── seeders/             # 数据库种子文件
-│   ├── package.json
-│   └── tsconfig.json
-├── shared/                   # 前后端共享代码
-│   ├── types/               # 共享类型定义
-│   └── utils/               # 共享工具函数
-├── docs/                     # 项目文档
-│   ├── api/                 # API 文档
-│   └── deployment/          # 部署文档
-├── docker-compose.yml        # Docker 编排文件
-├── package.json             # 根目录脚本管理
-└── README.md
+├── public/                   # 静态资源
+│   ├── favicon.ico
+│   ├── placeholder.svg
+│   └── robots.txt
+├── src/                      # 源代码目录
+│   ├── components/           # React 组件
+│   │   ├── ui/              # shadcn/ui 基础组件
+│   │   ├── Header.tsx       # 头部组件
+│   │   ├── HeroSection.tsx  # 首页英雄区域
+│   │   ├── PostCard.tsx     # 帖子卡片
+│   │   ├── StudyGroupCard.tsx # 学习小组卡片
+│   │   └── SubjectCard.tsx  # 科目卡片
+│   ├── hooks/               # 自定义 Hooks
+│   │   ├── use-mobile.tsx   # 移动端检测
+│   │   └── use-toast.ts     # Toast 通知
+│   ├── integrations/        # 第三方服务集成
+│   │   └── supabase/        # Supabase 配置
+│   ├── lib/                 # 工具库
+│   │   └── utils.ts         # 通用工具函数
+│   ├── pages/               # 页面组件
+│   │   ├── Index.tsx        # 首页
+│   │   └── NotFound.tsx     # 404页面
+│   ├── App.tsx              # 应用主组件
+│   ├── main.tsx             # 应用入口
+│   ├── index.css            # 全局样式
+│   └── vite-env.d.ts        # Vite 类型定义
+├── supabase/                 # Supabase 配置
+│   └── config.toml
+├── components.json           # shadcn/ui 配置
+├── tailwind.config.ts        # Tailwind CSS 配置
+├── vite.config.ts           # Vite 配置
+├── package.json             # 项目依赖
+└── README.md                # 项目说明
 ```
 
 ## 🔧 开发指南
 
 ### 代码规范
 
-我们使用 ESLint 和 Prettier 来保持代码风格一致：
+项目使用 ESLint 和 TypeScript ESLint 来保持代码风格一致：
 
 ```bash
 # 检查代码规范
 npm run lint
-
-# 自动修复代码格式
-npm run lint:fix
 ```
+
+### 可用脚本
+
+```bash
+# 启动开发服务器
+npm run dev
+
+# 构建生产版本
+npm run build
+
+# 构建开发版本
+npm run build:dev
+
+# 预览构建结果
+npm run preview
+
+# 代码检查
+npm run lint
+```
+
+### 组件开发
+
+项目使用 shadcn/ui 组件库，新组件应该：
+
+1. 遵循现有的组件结构
+2. 使用 Tailwind CSS 进行样式设计
+3. 支持响应式设计
+4. 包含适当的 TypeScript 类型定义
 
 ### 提交规范
 
@@ -179,34 +178,6 @@ fix: 修复文件上传bug
 docs: 更新API文档
 style: 调整登录页面样式
 refactor: 重构用户服务模块
-test: 添加用户模块单元测试
-```
-
-### 分支管理
-
-1. 所有开发必须创建新分支
-2. 分支命名规则:
-   - `feat/功能名`: 新功能开发
-   - `fix/问题描述`: 问题修复
-   - `docs/文档更新`: 文档更新
-   - `style/样式调整`: 样式调整
-3. 禁止直接在 main 分支开发
-4. 提交 PR 前请确保通过所有测试
-
-## 🧪 测试
-
-```bash
-# 运行前端测试
-npm run test:frontend
-
-# 运行后端测试
-npm run test:backend
-
-# 运行所有测试
-npm run test
-
-# 生成测试覆盖率报告
-npm run test:coverage
 ```
 
 ## 📦 构建和部署
@@ -214,32 +185,30 @@ npm run test:coverage
 ### 本地构建
 
 ```bash
-# 构建前端
-npm run build:frontend
-
-# 构建后端
-npm run build:backend
-
-# 构建所有
+# 构建生产版本
 npm run build
+
+# 预览构建结果
+npm run preview
 ```
 
-### Docker 部署
+### Lovable 部署
 
-```bash
-# 使用 Docker Compose 启动所有服务
-docker-compose up -d
+在 Lovable 平台部署非常简单：
 
-# 查看服务状态
-docker-compose ps
+1. 在 [Lovable 项目页面](https://lovable.dev/projects/056e8b2f-1bd3-4079-a5f0-12029e593a33) 点击 "Share" → "Publish"
+2. 项目将自动构建并部署到 Lovable 的 CDN
+3. 获得可分享的公开链接
 
-# 查看日志
-docker-compose logs -f
-```
+### 自定义域名
 
-### 生产环境部署
+如需绑定自定义域名：
 
-详细的部署指南请参考 [部署文档](docs/deployment/README.md)。
+1. 在 Lovable 项目中进入 Project > Settings > Domains
+2. 点击 "Connect Domain"
+3. 按照指引配置 DNS 记录
+
+详细说明请参考：[Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
 
 ## 🤝 贡献指南
 
@@ -267,81 +236,19 @@ docker-compose logs -f
 - 问题反馈: [Issues](https://github.com/your-username/LearnShareHub/issues)
 - 讨论交流: [Discussions](https://github.com/your-username/LearnShareHub/discussions)
 
+## 🌟 特性展示
+
+当前项目包含以下主要功能：
+
+- ✅ 响应式首页设计
+- ✅ 科目分类展示
+- ✅ 帖子卡片组件
+- ✅ 学习小组卡片
+- ✅ 现代化 UI 设计
+- 🚧 用户认证系统（开发中）
+- 🚧 帖子发布功能（开发中）
+- 🚧 实时聊天功能（开发中）
+
 ---
 
 ⭐ 如果这个项目对你有帮助，请给我们一个 Star！
-=======
-# Welcome to your Lovable project
-
-## Project info
-
-**URL**: https://lovable.dev/projects/056e8b2f-1bd3-4079-a5f0-12029e593a33
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/056e8b2f-1bd3-4079-a5f0-12029e593a33) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/056e8b2f-1bd3-4079-a5f0-12029e593a33) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
->>>>>>> origin/feat/Lovable
