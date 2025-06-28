@@ -126,7 +126,7 @@ const Login = () => {
             </Button>
           </form>
           
-          <div className="mt-6 text-center space-y-2">
+          <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">
               还没有账户？{' '}
               <Link
@@ -136,12 +136,14 @@ const Login = () => {
                 立即注册
               </Link>
             </p>
-            <Link
-              to="/forgot-password"
-              className="text-sm text-blue-600 hover:text-blue-500"
-            >
-              忘记密码？
-            </Link>
+            <div className="mt-2">
+              <Link
+                to="/forgot-password"
+                className="text-sm text-blue-600 hover:text-blue-500"
+              >
+                忘记密码？
+              </Link>
+            </div>
           </div>
         </CardContent>
       </Card>
